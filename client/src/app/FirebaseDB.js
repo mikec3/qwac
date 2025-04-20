@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import {getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove} from 'firebase/firestore'
-import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut} from 'firebase/auth'
+import {getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove, connectFirestoreEmulator} from 'firebase/firestore'
+import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, connectAuthEmulator} from 'firebase/auth'
     // Your web app's Firebase configuration
     const firebaseConfig = {
         apiKey: "AIzaSyDWQlpkmK9NOivqXBYLG4mk9RZ355y6MlI",
@@ -15,6 +15,14 @@ import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sig
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
     const db = getFirestore(app);
+
+    if (window.location.hostname.includes('localhost')) {
+        console.log("currently running on localhost");
+       // auth.useEmulator("http://127.0.0.1:9099");
+       // db.useEmulator("127.0.0.1", 8080);
+       connectAuthEmulator(auth, 'http://localhost:9099/')
+       connectFirestoreEmulator(db, 'localhost', 8080);
+      }
 
     const createUser = async (username, email, password) => {
         const createUserResult = await createUserWithEmailAndPassword(auth, email, password)

@@ -10,7 +10,7 @@ import { listOfPastDates } from './Utils';
 export default function Feed(props) {
 
     const [connectionsList, setConnectionsList] = useState([]);
-    const [feedList, setFeedList] = useState([]);
+    const [feedList, setFeedList] = useState();
     const [questionKeyDate, setQuestionKeyDate] = useState();
     const [questionKeyDateList, setQuestionKeyDateList] = useState();
     const [questionList, setQuestionList] = useState();
@@ -32,7 +32,7 @@ export default function Feed(props) {
         for (let date of dateList) {
           //console.log(date);        // ex. '20253101'
           getCurrentUsersConnections(props.currentUser, [date]).then((result)=>{
-            //console.log(result);
+            console.log(result);
             prelimFeedList.push(result);
             setFeedList(prelimFeedList);
           })
@@ -94,11 +94,11 @@ export default function Feed(props) {
           )}
       })}
 
-      {feedList.map((date)=> {
+      {questionList && feedList.map((date)=> {
         loopCounter = loopCounter + 1
        return [
-        <p> {questionKeyDateList[loopCounter-1]}</p>,
-        <p> {questionList[questionKeyDateList[loopCounter-1]]}</p>,
+        <p key={questionKeyDateList[loopCounter-1]}> {questionKeyDateList[loopCounter-1]}</p>,
+        <p key={questionList[questionKeyDateList[loopCounter-1]]}> {questionList[questionKeyDateList[loopCounter-1]]}</p>,
         date.map((friend)=>{
           if(friend.Answers != null && friend.Answers[questionKeyDateList[loopCounter-1]] != null) {
             return ([

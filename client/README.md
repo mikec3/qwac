@@ -18,6 +18,21 @@ changed next.config.js to have reactScrictMode false because it causes component
 const nextConfig = {reactStrictMode: false};
 
 
+## Firebase Emulator
+install firebase CLI (globally here)
+```
+npm install -g firebase-tools
+firebase login
+firebase init
+```
+firebase init will create a firebase.json file that the emulators will use
+Start emulator and tell it to save data to seed folder location
+```
+firebase emulators:start --export-on-exit=./emulator_seed
+//next time you start emulator use below command to import seed from last time
+firebase emulators:start --import=./emulator_seed
+```
+
 
 
 

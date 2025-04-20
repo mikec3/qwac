@@ -72,7 +72,7 @@ app.get("/api/getQuestionOfTheDay", async function(req, res) {
     // docSnap.data() will be undefined in this case
     console.log("No such document!");
     }
-})
+});
 
 
 // firebase admin key is saved in .env file all whitespace line breaks was erased so that the .env reads it as one continuous string
