@@ -8,6 +8,8 @@ import FirebaseLogin from './FirebaseLogin'
 import LoginCard from './LoginCard'
 import Questions from './Questions'
 import Feed from './Feed'
+import FeedCard from './FeedCard'
+import PendingConnections from './PendingConnections'
 import AddConnection from './AddConnection'
 import { useSearchParams } from "next/navigation";
 import {sendQuestionResponsetoDB, getCurrentUser } from './FirebaseDB';
@@ -78,7 +80,8 @@ console.log(currentUser);
                         {showConnectionAdd && <AddConnection toggleOff={toggleOffAddConnection} currentUser={currentUser}/>}
                 <Header user={currentUser} logout={logout} triggerLogin={qAnswered} addConnection={addConnection}/>
         <div className={styles.main}>
-          <Feed currentUser={currentUser}/>
+          <PendingConnections currentUser={currentUser}/>
+          <FeedCard currentUser={currentUser}/>
         </div>
       </div>
     );

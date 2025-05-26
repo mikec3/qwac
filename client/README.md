@@ -29,10 +29,24 @@ firebase init will create a firebase.json file that the emulators will use
 Start emulator and tell it to save data to seed folder location
 ```
 firebase emulators:start --export-on-exit=./emulator_seed
-//next time you start emulator use below command to import seed from last time
-firebase emulators:start --import=./emulator_seed
+//next time you start emulator use below command to import seed from last time and it will also save upon exit
+firebase emulators:start --import=./emulator_seed --export-on-exit=./emulator_seed
+CTLR-C //to exit cleanly and it will export emulator_seed
 ```
 
+## Feed notes
+* `<FeedCard>`  top level coomponent holds n(5) days/feedboxs of dailyquestions-connections-answers
+
+* * `dateList.map(date => <FeedBox day={date}>)` iterate through a dateList [20250501, 20250401] to make each daily question feed box
+
+* * `<FeedBox>` holds a question and everyone's answers for the day passed in
+
+* * * `<question day={date}>` display question from day passed in
+* * * `<answerCard day={date}>` display user's and connection's answers
+
+* * * * `uidList.map(uid => <answer date/uid>)` iterate through uidList [3423, 23534...] currentUser in front connections after
+
+* * * * `<answer date/uid>` display username and answer
 
 
 
@@ -43,6 +57,8 @@ firebase emulators:start --import=./emulator_seed
 
 
 
+
+-------------
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 

@@ -38,7 +38,7 @@ export default function LoginCard(props) {
         <h3>E-Mail</h3>
         <textarea className={styles.answerInput} type="text" placeholder="Required" name="email"></textarea>
         <h3>Password</h3>
-        <textarea className={styles.answerInput} type="text" placeholder="Required" name="password"></textarea>
+        <textarea className={styles.answerInput} type="password" placeholder="Required" name="password"></textarea>
         <button className={styles.answerButton} type="submit" name="login"> Login </button>
         <button className={styles.answerButton} type="submit" name="signup"> Sign Up </button>
     </form>
